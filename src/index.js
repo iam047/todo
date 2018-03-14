@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './main';
+import Main from './Main';
 
+import 'bootstrap/dist/css/bootstrap.css'
 
 
 function App () {
     return (
         <div>
-            <p>work</p>
             <Main />
         </div>
 
