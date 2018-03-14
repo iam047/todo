@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 export  default class Todolist extends Component {
-    dellTask(i) {
+    dellTask(id) {
         const { todo } = this.props;
-        const result = todo.filter(todo => i !== todo.id ? todo : false);
-        console.log(result);
-        this.props.setState(result);
+        this.props.setState({
+            todo: todo.filter(todo => id !== todo.id ? todo : false)
+        });
+
     }
     render() {
         const { todo } = this.props;
