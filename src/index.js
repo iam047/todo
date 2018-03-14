@@ -5,25 +5,25 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Footer from "./Footer";
 import Todolist from "./TodoList";
 
-
-class App extends Component{
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             todo: [
-                {action:false ,
+                {
+                 action: false,
                  id: 1521033545857,
-                 text: "asdasdas"}
-                    ]
+                 text: "asdasdas"
+                }
+                  ]
         };
     }
-
     render() {
         return (
             <div>
                 <Header setState={state => this.setState(state)} todo = {this.state.todo} />
-                <Todolist todo = {this.state.todo}/>
-                <Footer setState={state => this.setState(state)} todo = {this.state.todo}/>
+                <Todolist setState={state => this.setState(state)} todo = {this.state.todo}/>
+                <Footer todo = {this.state.todo}/>
             </div>
         );
     }

@@ -3,7 +3,7 @@ import '../style.css'
 
 export default class Header extends Component {
     addtodo(e) {
-        let { todo } = this.props;
+        const { todo } = this.props;
         if( e.which === 13 ) {
             if (e.target.value === '') {
                 return alert('Please write the text')
@@ -14,9 +14,8 @@ export default class Header extends Component {
                 action: false,
                 id: Date.now()
             };
-            const todos = todo;
-            todos.push(newTask);
-            this.props.setState(todos);
+            todo.push(newTask);
+            this.props.setState(todo);
             return e.target.value = '';
         }
     }

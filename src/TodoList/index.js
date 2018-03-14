@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 export  default class Todolist extends Component {
     dellTask(index) {
-        let { todo } = this.props;
-        const task = todo;
-        task.splice(index, 1);
-        this.setState(task)
+        const { todo } = this.props;
+        todo.splice(index, 1);
+        this.props.setState(todo);
+        console.log(todo);
     }
     render() {
-        let { todo } = this.props;
+        const { todo } = this.props;
         return (
-            <h6>
+            <div>
                 { todo.map((todo, index) => {
                     return(
                         <li key={todo.id} className='list-group-item ' >
@@ -20,7 +20,7 @@ export  default class Todolist extends Component {
                         </li>
                     )
                 }) }
-            </h6>
+            </div>
         );
     }
 }

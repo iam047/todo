@@ -3,7 +3,8 @@ import '../style.css'
 
 export  default class Footer extends Component {
     render() {
-        let { todo } = this.props;
+        const { todo } = this.props;
+        console.log(todo);
         return (
             <p>  task counter : { todo.length }</p>
         );
