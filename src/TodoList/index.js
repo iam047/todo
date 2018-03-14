@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 
 export  default class Todolist extends Component {
-    dellTask(index) {
+    dellTask(i) {
         const { todo } = this.props;
-        todo.splice(index, 1);
-        this.props.setState(todo);
-        console.log(todo);
+        const result = todo.filter(todo => i !== todo.id ? todo : false);
+        console.log(result);
+        this.props.setState(result);
     }
     render() {
         const { todo } = this.props;
         return (
             <div>
-                { todo.map((todo, index) => {
+                { todo.map((todo) => {
                     return(
-                        <li key={todo.id} className='list-group-item ' >
+
+                        <span key={todo.id} className='list-group-item'>
                             {todo.text}
-                            <button onClick={ this.dellTask.bind(this, index) }
+                            <button onClick={ this.dellTask.bind(this, todo.id) }
                                     className='btn-danger float-right'>dell</button>
-                        </li>
+                        </span>
                     )
                 }) }
             </div>

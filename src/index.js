@@ -9,13 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todo: [
-                {
-                 action: false,
-                 id: 1521033545857,
-                 text: "asdasdas"
-                }
-                  ]
+            todo: []
         };
     }
     render() {

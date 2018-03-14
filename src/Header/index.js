@@ -12,7 +12,7 @@ export default class Header extends Component {
             const newTask = {
                 text: addetarget,
                 action: false,
-                id: Date.now()
+                id: Date.now().toString()
             };
             todo.push(newTask);
             this.props.setState(todo);
