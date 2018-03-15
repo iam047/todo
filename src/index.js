@@ -9,15 +9,21 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todo: []
+            todo: [],
+            currentFilter: 'all'
         };
     }
     render() {
+        const commonProps = {
+            setState: state => this.setState(state),
+            todo: this.state.todo,
+            currentFilter: this.state.currentFilter
+        };
         return (
             <div>
-                <Header setState={state => this.setState(state)} todo = {this.state.todo} />
-                <Todolist setState={state => this.setState(state)} todo = {this.state.todo}/>
-                <Footer todo = {this.state.todo}/>
+                <Header {...commonProps} />
+                <Todolist {...commonProps}/>
+                <Footer {...commonProps}/>
             </div>
         );
     }

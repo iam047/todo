@@ -5,3 +5,14 @@
     font-family: Arial;
 
 }
+.line-through {
+    text-decoration:line-through;
+}
+
+
+.table{
+
+    position: fixed;
+    display: block;
+
+}

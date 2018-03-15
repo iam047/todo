@@ -11,7 +11,7 @@ export default class Header extends Component {
             const addetarget = e.target.value;
             const newTask = {
                 text: addetarget,
-                action: false,
+                status: 'active',
                 id: Date.now().toString()
             };
             todo.push(newTask);
@@ -20,11 +20,10 @@ export default class Header extends Component {
         }
     }
     render() {
-        const style = { width: '50%' };
         return (
-            <div className='container'>
-                <div className='jumbotron mx-auto' style={ style }>
-                    <h2 className='todoh'>todolist</h2>
+            <div className=''>
+                <div className='jumbotron' >
+                    <h2 className='todoh '>todolist</h2>
                 <input type='text'
                        placeholder='Write to keep in mind'
                        onKeyDown={ this.addtodo.bind(this) }
