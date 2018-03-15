@@ -34,7 +34,7 @@ export  default class Todolist extends Component {
                             <button onClick={ this.dellTask.bind(this, todo.id) }
                                     className='btn-danger float-right'>dell</button>
                         </span>
-                    )
+                    );
                 }) }
             </div>
         );

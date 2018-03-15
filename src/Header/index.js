@@ -8,9 +8,9 @@ export default class Header extends Component {
             if (e.target.value === '') {
                 return alert('Please write the text')
             }
-            const addetarget = e.target.value;
+            const addtarget = e.target.value;
             const newTask = {
-                text: addetarget,
+                text: addtarget,
                 status: 'active',
                 id: Date.now().toString()
             };
@@ -22,12 +22,12 @@ export default class Header extends Component {
     render() {
         return (
             <div className=''>
-                <div className='jumbotron' >
+                <div className='jumbotron ' >
                     <h2 className='todoh '>todolist</h2>
                 <input type='text'
                        placeholder='Write to keep in mind'
                        onKeyDown={ this.addtodo.bind(this) }
-                       className='list-group-item-light form-control'
+                       className='list-group-item-light form-control table'
                 />
                 </div>
             </div>
