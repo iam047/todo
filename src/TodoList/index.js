@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import TodoItem from './components/TodoItem';
 
 export  default class Todolist extends Component {
-    submit(e, id) {
+    submit (e, id) {
         if (e === '') {
             return alert('Please write the text')
         }
         const { todo } = this.props;
         const rewrite = e;
         const newtext = todo.filter(todo => id === todo.id ? todo.text = rewrite : false);
-        console.log(newtext);
         this.props.setState({todo: todo.slice(newtext) });
     }
     dellTask (id) {
@@ -20,7 +19,7 @@ export  default class Todolist extends Component {
     }
     onCompleted (todo) {
         this.props.setState({
-            todo: todo.status === 'active' ? todo.status = 'done' : todo.status = 'active'
+            todos: todo.status === 'active' ? todo.status = 'done' : todo.status = 'active'
         });
     }
     getTodosByFilter (todo, currentFilter) {

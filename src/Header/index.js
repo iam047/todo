@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../style.css'
 
 export default class Header extends Component {
-    addtodo(e) {
+    addtodo (e) {
         const { todo } = this.props;
         if( e.which === 13 ) {
             if (e.target.value === '') {
@@ -20,7 +20,7 @@ export default class Header extends Component {
             return e.target.value = '';
         }
     }
-    render() {
+    render () {
         return (
             <div className=''>
                 <div className='jumbotron ' >

@@ -24,17 +24,17 @@ export  default class Footer extends Component {
 
         ];
     }
-    dellDoneTask() {
+    dellDoneTask () {
         const { todo } = this.props;
         this.props.setState({
             todo: todo.filter( todo => todo.status === 'active' ? todo : false)
         });
 
     }
-    changeFilter(nextFilter) {
+    changeFilter (nextFilter) {
         this.props.setState({currentFilter: nextFilter })
     }
-    render() {
+    render () {
         const { todo } = this.props;
         const button =  this.obj.map(obj => {
            return (
