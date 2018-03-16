@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../style.css'
 
 export  default class Footer extends Component {
-    constructor(){
+    constructor() {
         super();
         this.obj = [
             {
@@ -27,7 +27,7 @@ export  default class Footer extends Component {
     dellDoneTask() {
         const { todo } = this.props;
         this.props.setState({
-            todo: todo.filter(todo => todo.status === 'active' ? todo : false)
+            todo: todo.filter( todo => todo.status === 'active' ? todo : false)
         });
 
     }
@@ -39,9 +39,9 @@ export  default class Footer extends Component {
         const button =  this.obj.map(obj => {
            return (
                <button
-                    key={obj.name}
-                    onClick={this.changeFilter.bind(this, obj.name )}
-                    className= {obj.className}
+                    key = {obj.name}
+                    onClick = {this.changeFilter.bind(this, obj.name )}
+                    className = {obj.className}
                >
                    {obj.text}
                </button>
@@ -49,8 +49,8 @@ export  default class Footer extends Component {
         });
         return (
             <div>
-                <span>task counter : { todo.length }</span>
-                <button onClick={this.dellDoneTask.bind(this) } className='btn-danger float-right'>Dell Completed  tasks</button>
+                <span>task counter : { todo.length } </span>
+                <button onClick={ this.dellDoneTask.bind(this) } className='btn-danger float-right'>Dell Completed  tasks</button>
                 {button}
             </div>
         );
