@@ -9,19 +9,19 @@ export  default class Todolist extends Component {
         const { todo } = this.props;
         const rewrite = e;
         const newtext = todo.filter(todo => id === todo.id ? todo.text = rewrite : false);
-        todo.slice(newtext);
-        this.props.setState(todo);
+        console.log(newtext);
+        this.props.setState({todo: todo.slice(newtext) });
     }
     dellTask (id) {
-        //debugger;
         const { todo } = this.props;
         this.props.setState({
             todo: todo.filter(todo => id !== todo.id ? todo : false)
         });
     }
     onCompleted (todo) {
-       todo.status === 'active' ? todo.status = 'done' : todo.status = 'active' ;
-        this.props.setState(todo);
+        this.props.setState({
+            todo: todo.status === 'active' ? todo.status = 'done' : todo.status = 'active'
+        });
     }
     getTodosByFilter (todo, currentFilter) {
         if (currentFilter === 'all') {
@@ -30,23 +30,24 @@ export  default class Todolist extends Component {
         return todo.filter(todo =>  todo.status === currentFilter);
     }
     isEding (todo) {
-        todo.isEditing === false ? todo.isEditing = true : todo.isEditing = false ;
-        this.props.setState(todo);
+        this.props.setState({
+            todos: todo.isEditing === false ? todo.isEditing = true : todo.isEditing = false
+        });
     }
     render () {
         const { todo, currentFilter } = this.props;
         const todos = this.getTodosByFilter(todo, currentFilter);
         return (
             <div>
-                { todos.map( (todo) => {
+                { todos.map((item) => {
                     return(
-                        <TodoItem key = { todo.id }
+                        <TodoItem key = { item.id }
                                   submit = { this.submit.bind(this) }
-                                  todo = { todo }
-                                  checked = { todo.status === 'done'}
-                                  isEding = { this.isEding.bind(this, todo) }
-                                  onCompleted = { this.onCompleted.bind(this, todo) }
-                                  dellTask = { this.dellTask.bind(this, todo.id) }
+                                  todo = { item }
+                                  checked = { item.status === 'done'}
+                                  Eding = { ()=> this.isEding(item) }
+                                  onCompleted = {()=> this.onCompleted(item) }
+                                  dellTask = {()=> this.dellTask(item.id) }
                         />
                     );
                 }) }
