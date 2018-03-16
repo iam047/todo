@@ -8,11 +8,12 @@ export default class Header extends Component {
             if (e.target.value === '') {
                 return alert('Please write the text')
             }
-            const addtarget = e.target.value;
+            let addtarget = e.target.value;
             const newTask = {
                 text: addtarget,
                 status: 'active',
-                id: Date.now().toString()
+                id: Date.now().toString(),
+                isEditing: false
             };
             todo.push(newTask);
             this.props.setState(todo);
