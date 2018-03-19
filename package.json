@@ -6,8 +6,6 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.1",
     "react": "^16.2.0",
-    "react-bootstrap": "^0.32.1",
-    "react-bootstrap-dropdown-menu": "^1.1.14",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"
   },

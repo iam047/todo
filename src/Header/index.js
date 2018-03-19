@@ -3,17 +3,10 @@ import '../style.css'
 
 export default class Header extends Component {
 
-    activeSearch () {
-        const search= 'search';
+    activeSearch (item) {
+        const search = item;
         this.props.setState({
             searchTodo: search
-        });
-    }
-
-    activeInput () {
-        const input = 'input';
-        this.props.setState({
-            searchTodo: input
         });
     }
 
@@ -28,23 +21,22 @@ export default class Header extends Component {
 
     addtodo (e) {
         const { todo, searchTodo } = this.props;
-        if(searchTodo === 'input')
-        if( e.which === 13 ) {
-            if (e.target.value === '') {
-                return alert('Please write the text')
+        if(searchTodo === 'input') {
+            if (e.which === 13) {
+                if (e.target.value === '') {
+                    return alert('Please write the text')
+                }
+                const addtarget = e.target.value;
+                const Task = {
+                    text: addtarget,
+                    status: 'active',
+                    id: Date.now().toString(),
+                    isEditing: false
+                };
+                todo.push(Task);
+                this.props.setState(todo);
+                return e.target.value = '';
             }
-            const addtarget = e.target.value;
-            const newTask = {
-                text: addtarget,
-                status: 'active',
-                id: Date.now().toString(),
-                isEditing: false
-            };
-           todo.push(newTask);
-            this.props.setState({
-                todo: todo
-            });
-            return e.target.value = '';
         }
     }
     render () {
@@ -62,16 +54,16 @@ export default class Header extends Component {
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li className="dropdown-item"
-                            onClick={ this.activeInput.bind(this)  } >Input</li>
+                            onClick={()=> this.activeSearch('input')  } >Input</li>
                         <li className="dropdown-item"
-                            onClick={ this.activeSearch.bind(this)  }>Search</li>
+                            onClick={()=> this.activeSearch('search')  }>Search</li>
                     </div>
                 </div>
                 <input type='text'
                        placeholder='Write to keep in mind'
-                       onKeyDown={ this.addtodo.bind(this) }
+                       onKeyDown={ e => this.addtodo(e) }
                        className='list-group-item-light form-control'
-                       onChange={ this.addSearchValue.bind(this) }
+                       onChange={ e => this.addSearchValue(e) }
                 />
             </div>
         );

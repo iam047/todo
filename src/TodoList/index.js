@@ -20,9 +20,7 @@ export  default class Todolist extends Component {
     }
 
     onCompleted (todo) {
-       const newStatus =  todo.status === 'active' ?
-           todo.status = 'done' :
-           todo.status = 'active';
+       const newStatus =  todo.status === 'active' ? todo.status = 'done' : todo.status = 'active';
         this.props.setState({
             todo: newStatus
         });
@@ -50,9 +48,9 @@ export  default class Todolist extends Component {
         const { todo, currentFilter, searchValue, searchTodo } = this.props;
         const tod = this.getTodosByFilter(todo, currentFilter);
         const fillterSearch = tod.filter( todo => {
-            if (searchTodo ==='input'){return true}
-            return todo.text.indexOf(searchValue.toLowerCase()) !== -1
-        });
+             if (searchTodo ==='input'){return true}
+             return todo.text.toLowerCase().includes(searchValue)
+         });
         return (
             <div>
                 { fillterSearch.map(item => {
