@@ -35,7 +35,7 @@ export  default class Todolist extends Component {
         return todo.filter(todo =>  todo.status === currentFilter);
     }
 
-    isEding ({id}) {
+    isEding ( {id} ) {
         const nextTodos = this.props.todo.map(todo => {
             return id === todo.id
                 ? {...todo, isEditing: !todo.isEditing}
@@ -51,7 +51,7 @@ export  default class Todolist extends Component {
     render () {
         const { todo, currentFilter, searchValue} = this.props;
         const todos = this.getTodosByFilter(todo, currentFilter);
-        const fillterSearch = todos.filter((todo)=> {
+        const fillterSearch = todos.filter( todo => {
             return todo.text.indexOf(searchValue.toLowerCase()) !== -1
         });
         return (

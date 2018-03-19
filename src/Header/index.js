@@ -10,7 +10,7 @@ export default class Header extends Component {
             searchTodo: onSearch
         });
     }
-    addSearchValue = (e) => {
+    addSearchValue = e => {
         const { searchTodo} = this.props;
         if(searchTodo)
         this.props.setState({
