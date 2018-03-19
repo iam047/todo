@@ -10,15 +10,21 @@ class App extends Component {
         super(props);
         this.state = {
             todo: [],
-            currentFilter: 'all'
+            currentFilter: 'all',
+            searchTodo: false,
+            searchValue: ''
         };
     }
+
     render () {
         const commonProps = {
             setState: state => this.setState(state),
             todo: this.state.todo,
-            currentFilter: this.state.currentFilter
+            currentFilter: this.state.currentFilter,
+            searchTodo: this.state.searchTodo,
+            searchValue: this.state.searchValue
         };
+
         return (
             <div>
                 <Header {...commonProps} />
