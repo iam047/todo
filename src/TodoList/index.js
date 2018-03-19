@@ -47,7 +47,6 @@ export  default class Todolist extends Component {
     }
 
 
-
     render () {
         const { todo, currentFilter, searchValue} = this.props;
         const todos = this.getTodosByFilter(todo, currentFilter);

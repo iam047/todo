@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import '../style.css'
 
 export default class Header extends Component {
+
     activesearch () {
         let { searchTodo } = this.props;
-         const onSearch =  searchTodo === false ? searchTodo = true : searchTodo = false;
-         console.log(onSearch);
+        const onSearch =  searchTodo === false ? searchTodo = true : searchTodo = false;
+        console.log(onSearch);
         this.props.setState({
             searchTodo: onSearch
         });
     }
+
     addSearchValue = e => {
         const { searchTodo} = this.props;
         if(searchTodo)
