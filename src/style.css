@@ -1,9 +1,4 @@
-/*.todoh {*/
-    /*position:absolute;*/
-    /*top: 3%;*/
-    /*left: 45%;*/
-    /*font-family: Arial;*/
-/*}*/
+
 .line-through {
     text-decoration:line-through;
 }
@@ -17,9 +12,8 @@
 
 }
 
-.button {
-    flex-wrap: wrap-reverse;
-}
 .text{
     font-size: 15px;
 }
+
+

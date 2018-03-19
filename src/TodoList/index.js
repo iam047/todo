@@ -24,7 +24,7 @@ export  default class Todolist extends Component {
            todo.status = 'done' :
            todo.status = 'active';
         this.props.setState({
-            todos: newStatus
+            todo: newStatus
         });
     }
 
@@ -46,11 +46,11 @@ export  default class Todolist extends Component {
         });
     }
 
-
     render () {
-        const { todo, currentFilter, searchValue} = this.props;
-        const todos = this.getTodosByFilter(todo, currentFilter);
-        const fillterSearch = todos.filter( todo => {
+        const { todo, currentFilter, searchValue, searchTodo } = this.props;
+        const tod = this.getTodosByFilter(todo, currentFilter);
+        const fillterSearch = tod.filter( todo => {
+            if (searchTodo ==='input'){return true}
             return todo.text.indexOf(searchValue.toLowerCase()) !== -1
         });
         return (

@@ -7,18 +7,18 @@ export  default class Footer extends Component {
         this.obj = [
             {
                 name: 'done',
-                className: 'btn-danger button',
+                className: 'btn-danger ',
                 text: 'Completed tasks'
 
             },
             {
                 name: 'active',
-                className: 'btn-danger button',
+                className: 'btn-danger ',
                 text: 'Active tasks'
             },
             {
                 name: 'all',
-                className: 'btn-danger button',
+                className: 'btn-danger ',
                 text: 'All tasks'
             }
 
@@ -45,8 +45,7 @@ export  default class Footer extends Component {
                <button
                     key = {obj.name}
                     onClick = {this.changeFilter.bind(this, obj.name )}
-                    className = {obj.className}
-               >
+                    className = {obj.className}>
                    {obj.text}
                </button>
             );
@@ -55,8 +54,10 @@ export  default class Footer extends Component {
         return (
             <div>
                 <span>task counter : { todo.length } </span>
-                <button onClick={ this.dellDoneTask.bind(this) } className='btn-danger button '>Dell Completed  tasks</button>
+                <div className='button'>
+                <button onClick={ this.dellDoneTask.bind(this) } className='btn-danger'>Dell Completed  tasks</button>
                 {button}
+                </div>
             </div>
         );
     }

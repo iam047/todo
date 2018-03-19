@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import Footer from "./Footer";
 import Todolist from "./TodoList";
 
@@ -11,7 +12,7 @@ class App extends Component {
         this.state = {
             todo: [],
             currentFilter: 'all',
-            searchTodo: false,
+            searchTodo: 'input',
             searchValue: ''
         };
     }
@@ -26,7 +27,7 @@ class App extends Component {
         };
 
         return (
-            <div>
+            <div className='flexbox'>
                 <Header {...commonProps} />
                 <Todolist {...commonProps}/>
                 <Footer {...commonProps}/>
