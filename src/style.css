@@ -1,18 +1,19 @@
-.todoh {
-    position:absolute;
-    top: 3%;
-    left: 45%;
-    font-family: Arial;
 
-}
 .line-through {
     text-decoration:line-through;
 }
 
 
-.table{
-
-    position: fixed;
-    display: block;
+.flexbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 500px;
 
 }
+
+.text{
+    font-size: 15px;
+}
+
+

@@ -7,23 +7,20 @@ export  default class Footer extends Component {
         this.obj = [
             {
                 name: 'done',
-                className: 'btn-danger float-right',
                 text: 'Completed tasks'
-
             },
             {
                 name: 'active',
-                className: 'btn-danger float-right',
                 text: 'Active tasks'
             },
             {
                 name: 'all',
-                className: 'btn-danger float-right',
                 text: 'All tasks'
             }
 
         ];
     }
+
     dellDoneTask () {
         const { todo } = this.props;
         this.props.setState({
@@ -31,27 +28,32 @@ export  default class Footer extends Component {
         });
 
     }
+
     changeFilter (nextFilter) {
         this.props.setState({currentFilter: nextFilter })
     }
+
     render () {
         const { todo } = this.props;
+        //render button
         const button =  this.obj.map(obj => {
            return (
                <button
                     key = {obj.name}
                     onClick = {this.changeFilter.bind(this, obj.name )}
-                    className = {obj.className}
-               >
+                    className = 'btn-danger '>
                    {obj.text}
                </button>
             );
         });
+
         return (
             <div>
                 <span>task counter : { todo.length } </span>
-                <button onClick={ this.dellDoneTask.bind(this) } className='btn-danger float-right'>Dell Completed  tasks</button>
+                <div className='button'>
+                <button onClick={() => this.dellDoneTask() } className='btn-danger'>Dell Completed  tasks</button>
                 {button}
+                </div>
             </div>
         );
     }
