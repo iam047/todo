@@ -4,9 +4,8 @@ import '../style.css'
 export default class Header extends Component {
 
     activeSearch (item) {
-        const search = item;
         this.props.setState({
-            searchTodo: search
+            searchTodo: item
         });
     }
 
@@ -20,7 +19,7 @@ export default class Header extends Component {
 
 
     addtodo (e) {
-        const { todo, searchTodo } = this.props;
+        const { searchTodo } = this.props;
         if(searchTodo === 'input') {
             if (e.which === 13) {
                 if (e.target.value === '') {
@@ -33,8 +32,10 @@ export default class Header extends Component {
                     id: Date.now().toString(),
                     isEditing: false
                 };
-                todo.push(Task);
-                this.props.setState(todo);
+                const nextTask = this.props.todo.concat(Task);
+                this.props.setState({
+                    todo: nextTask
+                });
                 return e.target.value = '';
             }
         }
