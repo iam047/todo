@@ -38,3 +38,15 @@ export function dellAllDoneTodo() {
         type: "DELL_ALL_DONE"
     }
 }
+export function changeSearch(value) {
+    return {
+        type: "CHANGE_SEARCH",
+        value
+    }
+}
+export function valueSearch(value) {
+    return {
+        type: "VALUE_SEARCH",
+        value
+    }
+}

@@ -28,11 +28,15 @@ class Todolist extends Component {
         return todos.filter(todo =>  todo.done === currentFilter);
     };
     render() {
-        let { todos, currentFilter  } = this.props;
+        let { todos, currentFilter,searchTodo,searchValue } = this.props;
         const item = this.getTodosByFilter(todos, currentFilter);
+        const fillterSearch = item.filter( todo => {
+            if (searchTodo ==='input'){return true}
+            return todo.text.toLowerCase().includes(searchValue)
+        });
          return (
              <div>
-                 {item.map(todo => (
+                 {fillterSearch.map(todo => (
                      <Todo key={todo.id}
                            todo = {todo}
                            dellTodo = {() => this.handleDelete(todo.id) }
@@ -51,7 +55,9 @@ class Todolist extends Component {
 
 const mapStateToProps = ({todoReducer}) => ({
     todos: todoReducer.todos,
-    currentFilter: todoReducer.currentFilter
+    currentFilter: todoReducer.currentFilter,
+    searchTodo:  todoReducer.searchTodo,
+    searchValue: todoReducer.searchValue
 });
 const mapDispatchToProps = dispatch => ({
     dellTodo: id => dispatch(dellTodo(id)),

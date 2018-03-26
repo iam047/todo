@@ -14,6 +14,8 @@ const todoReducer = (state = {todos:[]}, action) => {
                 },
             ],
             currentFilter:  'all',
+            searchTodo: 'input',
+            searchValue: ''
         };
         case 'DELL_TODO':
             return {
@@ -45,6 +47,14 @@ const todoReducer = (state = {todos:[]}, action) => {
         case "DELL_ALL_DONE":
             return {
                 ...state, todos: [...state.todos.filter( todo => !todo.done)]
+            };
+        case "CHANGE_SEARCH":
+            return {
+                ...state, todos: [...state.todos], searchTodo: action.value
+            };
+        case "VALUE_SEARCH":
+            return {
+                ...state, todos: [...state.todos], searchValue: action.value
             };
         default:
         return state;

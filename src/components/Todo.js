@@ -20,7 +20,7 @@ export default ( {todo:{text, id, isEditing, done}, dellTodo, Eding, submit, Cha
             <span  onDoubleClick ={ () => Eding(isEditing) }
                    style={ { textDecoration: done ? 'line-through' : 'none'}}
                    className='list-group-item text-start'>
-                <input type='checkbox' onChange={ () => ChangeDoneTodo(id)}/>
+                <input type='checkbox' checked={done === true} onChange={ () => ChangeDoneTodo(id)}/>
                 { text }
                 <button  className='btn-danger button float-right' onClick={ () => dellTodo( id) }>dell</button>
             </span>
