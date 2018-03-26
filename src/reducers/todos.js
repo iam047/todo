@@ -1,4 +1,5 @@
-const todoReducer = (state = {todos:[]}, action) => {
+import initialState from '../initialState';
+const todoReducer = (state=initialState.todoReducer, action) => {
     switch (action.type) {
     case 'ADD_TODO':
         return {

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
+import {bindActionCreators} from "redux";
 import { addTodo, changeSearch, valueSearch} from "../actions";
 
 class Header extends Component {
 
-    activeSearch (item) {
+    changeSearch (item) {
         this.props.changeSearch(item);
     }
 
@@ -38,9 +39,9 @@ class Header extends Component {
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li className="dropdown-item"
-                            onClick={()=> this.activeSearch('input')  } >Input</li>
+                            onClick={()=> this.changeSearch('input')  } >Input</li>
                         <li className="dropdown-item"
-                            onClick={()=> this.activeSearch('search')  }>Search</li>
+                            onClick={()=> this.changeSearch('search')  }>Search</li>
                     </div>
                 </div>
                 <input  ref={node => input = node}
@@ -52,20 +53,30 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = ({todoReducer}) => ({
-    todos: todoReducer.todos,
-    searchTodo: todoReducer.searchTodo
-});
-const mapDispatchToProps = dispatch => ({
-    addTodo: value => dispatch(addTodo(value)),
-    changeSearch: value => dispatch(changeSearch(value)),
-    valueSearch:  value => dispatch(valueSearch(value))
-});
+// const mapStateToProps = ({todoReducer}) => ({
+//     todos: todoReducer.todos,
+//     searchTodo: todoReducer.searchTodo
+// });
+// const mapDispatchToProps = dispatch => ({
+//     addTodo: value => dispatch(addTodo(value)),
+//     changeSearch: value => dispatch(changeSearch(value)),
+//     valueSearch:  value => dispatch(valueSearch(value))
+// });
+//
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Header)
+
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Header)
-
-
-
+    ({todoReducer}) => ({
+        todos: todoReducer.todos,
+        searchTodo: todoReducer.searchTodo
+    }),
+    dispatch => bindActionCreators({
+        addTodo,
+        changeSearch,
+        valueSearch
+    }, dispatch)
+)(Header);

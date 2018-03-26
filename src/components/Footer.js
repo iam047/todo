@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {filters, dellAllDoneTodo} from "../actions";
+import {bindActionCreators} from "redux";
 
 class  Footer extends Component {
      constructor(){
@@ -21,12 +22,12 @@ class  Footer extends Component {
 
          ];
      }
-    changeFilter = (nextFilter) =>{
+    filters = (nextFilter) =>{
          this.props.filters(nextFilter);
     };
 
 
-    killdellAllDoneTodo = () => {
+    dellAllDoneTodo = () => {
         this.props.dellAllDoneTodo()
     };
 
@@ -36,7 +37,7 @@ class  Footer extends Component {
             return (
                 <button
                     key = {obj.name}
-                    onClick = {this.changeFilter.bind(this, obj.name )}
+                    onClick = {this.filters.bind(this, obj.name )}
                     className = 'btn-danger '>
                     {obj.text}
                 </button>
@@ -47,7 +48,7 @@ class  Footer extends Component {
             <div>
                 <p>task counter : {this.props.todos.length}</p>
                 <div>
-                    <button  onClick={this.killdellAllDoneTodo} >Dell Completed  tasks</button>
+                    <button  onClick={this.dellAllDoneTodo} >Dell Completed  tasks</button>
                     {button}
                 </div>
             </div>
@@ -55,16 +56,29 @@ class  Footer extends Component {
     }
 }
 
-const mapStateToProps = ({todoReducer}) => ({
-    todos: todoReducer.todos
-});
-const mapDispatchToProps = dispatch => ({
-    filters: (filter) => dispatch(filters(filter)),
-    dellAllDoneTodo: () => dispatch(dellAllDoneTodo())
-
-});
+// const mapStateToProps = ({todoReducer}) => ({
+//     todos: todoReducer.todos
+// });
+// const mapDispatchToProps = dispatch => ({
+//     filters: (filter) => dispatch(filters(filter)),
+//     dellAllDoneTodo: () => dispatch(dellAllDoneTodo())
+//
+// });
+//
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Footer)
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Footer)
+    ({todoReducer}) => ({
+        todos: todoReducer.todos
+    }),
+    dispatch => bindActionCreators({
+        filters,
+        dellAllDoneTodo
+    }, dispatch)
+)(Footer);
+
+
+

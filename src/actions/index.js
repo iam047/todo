@@ -10,7 +10,7 @@ export function dellTodo(id) {
         id
     }
 }
-export function changeIsEding(id) {
+export function changeIsEditing(id) {
     return {
         type: "CHANGE_IS_EDING",
         id

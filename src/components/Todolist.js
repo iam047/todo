@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {dellTodo, changeIsEding, submit, changeDone} from "../actions";
+import {dellTodo, changeIsEditing, submit, changeDone} from "../actions";
 import Todo from './Todo';
+import {bindActionCreators} from "redux";
 
 class Todolist extends Component {
 
-    handlesubmit (text, id) {
-        console.log(text, id);
+    submit = (text, id) => {
         this.props.submit(text, id)
-    }
+    };
 
-    handleDelete = (id) => {
+    dellTodo = (id) => {
         this.props.dellTodo(id);
     };
 
-    handleChangeIsEding = (id) => {
-        this.props.changeIsEding(id);
+    changeIsEditing = (id) => {
+        this.props.changeIsEditing(id);
     };
 
-    handlechangeDone = (id) => {
+    changeDone = (id) => {
         this.props.changeDone(id);
     };
     getTodosByFilter = (todos, currentFilter) => {
@@ -31,18 +31,17 @@ class Todolist extends Component {
         let { todos, currentFilter,searchTodo,searchValue } = this.props;
         const item = this.getTodosByFilter(todos, currentFilter);
         const fillterSearch = item.filter( todo => {
-            if (searchTodo ==='input'){return true}
-            return todo.text.toLowerCase().includes(searchValue)
+            return searchTodo ==='input' || todo.text.toLowerCase().includes(searchValue);
         });
          return (
              <div>
                  {fillterSearch.map(todo => (
                      <Todo key={todo.id}
                            todo = {todo}
-                           dellTodo = {() => this.handleDelete(todo.id) }
-                           Eding = { () => this.handleChangeIsEding(todo.id) }
-                           submit = { (text) => this.handlesubmit(text,todo.id) }
-                           ChangeDoneTodo = { () => this.handlechangeDone(todo.id) }
+                           dellTodo = {() => this.dellTodo(todo.id) }
+                           editing = { () => this.changeIsEditing(todo.id) }
+                           submit = { (text) => this.submit(text,todo.id) }
+                           ChangeDoneTodo = { () => this.changeDone(todo.id) }
 
                      />
                  ))
@@ -53,20 +52,35 @@ class Todolist extends Component {
 }
 
 
-const mapStateToProps = ({todoReducer}) => ({
-    todos: todoReducer.todos,
-    currentFilter: todoReducer.currentFilter,
-    searchTodo:  todoReducer.searchTodo,
-    searchValue: todoReducer.searchValue
-});
-const mapDispatchToProps = dispatch => ({
-    dellTodo: id => dispatch(dellTodo(id)),
-    changeIsEding: id => dispatch(changeIsEding(id)),
-    submit: (text,id) => dispatch(submit(text,id)),
-    changeDone: id => dispatch(changeDone(id))
-});
+// const mapStateToProps = ({todoReducer}) => ({
+//     todos: todoReducer.todos,
+//     currentFilter: todoReducer.currentFilter,
+//     searchTodo:  todoReducer.searchTodo,
+//     searchValue: todoReducer.searchValue
+// });
+// const mapDispatchToProps = dispatch => ({
+//     dellTodo: id => dispatch(dellTodo(id)),
+//     changeIsEding: id => dispatch(changeIsEding(id)),
+//     submit: (text,id) => dispatch(submit(text,id)),
+//     changeDone: id => dispatch(changeDone(id))
+// });
+//
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Todolist)
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Todolist)
+    ({todoReducer}) => ({
+        todos: todoReducer.todos,
+        currentFilter: todoReducer.currentFilter,
+        searchTodo:  todoReducer.searchTodo,
+        searchValue: todoReducer.searchValue
+    }),
+    dispatch => bindActionCreators({
+        dellTodo,
+        changeIsEditing,
+        submit,
+        changeDone
+    }, dispatch)
+)(Todolist);
