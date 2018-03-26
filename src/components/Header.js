@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import { addTodo, changeSearch,valueSearch} from "../actions";
+import { addTodo, changeSearch, valueSearch} from "../actions";
 
 class Header extends Component {
+
     activeSearch (item) {
         this.props.changeSearch(item);
     }
-    addSearchValue = e => {
+
+    addSearchValue  (e) {
         const { searchTodo} = this.props;
         if(searchTodo === 'search')
         this.props.valueSearch(e.target.value);
     };
 
     render() {
-
-
         let input;
         return (
             <div>

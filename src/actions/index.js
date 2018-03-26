@@ -29,10 +29,11 @@ export function changeDone(id) {
         id
     }
 }
-export const filters = (filter) => ({
-    type: "SET_FILTER",
+export function  filters  (filter)  {
+   return { type: "SET_FILTER",
     filter
-});
+   }
+};
 export function dellAllDoneTodo() {
     return {
         type: "DELL_ALL_DONE"
