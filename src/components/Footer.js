@@ -1,37 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {showDone, showActive,  showAll, dellAllDoneTodo} from "../actions";
+import {filters, dellAllDoneTodo} from "../actions";
 
 class  Footer extends Component {
      constructor(){
          super();
          this.obj = [
              {
-                 title: "ACTIVE",
-                 onClick: this.showActiveTodos
+                 name: true,
+                 text: 'COMPLETED'
              },
              {
-                 title: "DONE",
-                 onClick: this.showDoneTodos
+                 name: false,
+                 text: 'ACTIVE'
              },
              {
-                 title: "ALL",
-                 onClick: this.showAllTodos
+                 name: 'all',
+                 text: 'ALL'
              }
+
          ];
      }
-
-    showAllTodos = () => {
-        this.props.showAll()
+    changeFilter = (nextFilter) =>{
+         this.props.filters(nextFilter);
     };
 
-    showActiveTodos = () => {
-        this.props.showActive()
-    };
-
-    showDoneTodos = () => {
-        this.props.showDone()
-    };
 
     killdellAllDoneTodo = () => {
         this.props.dellAllDoneTodo()
@@ -42,10 +35,10 @@ class  Footer extends Component {
         const button =  this.obj.map(obj => {
             return (
                 <button
-                    key = {obj.title}
-                    onClick = {obj.onClick}
+                    key = {obj.name}
+                    onClick = {this.changeFilter.bind(this, obj.name )}
                     className = 'btn-danger '>
-                    {obj.title}
+                    {obj.text}
                 </button>
             );
         });
@@ -66,9 +59,7 @@ const mapStateToProps = ({todoReducer}) => ({
     todos: todoReducer.todos
 });
 const mapDispatchToProps = dispatch => ({
-    showDone: () => dispatch(showDone()),
-    showActive: () => dispatch(showActive()),
-    showAll: () => dispatch(showAll()),
+    filters: (filter) => dispatch(filters(filter)),
     dellAllDoneTodo: () => dispatch(dellAllDoneTodo())
 
 });

@@ -14,7 +14,6 @@ const todoReducer = (state = {todos:[]}, action) => {
                 },
             ],
             currentFilter:  'all',
-
         };
         case 'DELL_TODO':
             return {
@@ -27,38 +26,21 @@ const todoReducer = (state = {todos:[]}, action) => {
                 ...state, todos: [...state.todos.map(todo => {
                     return todo.id  ===  action.id
                         ? {...todo, isEditing: !todo.isEditing}
-                        : todo
-                })
-                ]
+                        : todo })]
             };
         case 'SUBMIT':
             return{
-                ...state, todos: [...state.todos.filter(todo => todo.id === action.id
-                    ? todo.text = action.text : false)]
+                ...state, todos: [...state.todos.map(todo => todo.id === action.id
+                    ? {...todo, text: action.text} : todo)]
             };
         case "CHANGE_TODO":
             return {
                 ...state, todos: [...state.todos.map(todo => {
-                    return todo.id  ===  action.id
-                        ? {...todo, done: !todo.done}
-                        : todo
-                })
-                ]
+                    return todo.id  ===  action.id ? {...todo, done: !todo.done} : todo })]
             };
-        case "SHOW_DONE":
-            console.log('show_done');
+        case "SET_FILTER":
             return {
-              ...state, todos: [...state.todos.filter( todo => todo.done)]
-            };
-        case "SHOW_ACTIVE":
-            console.log('show_Active');
-            return {
-                ...state, todos: [...state.todos.filter( todo => !todo.done)]
-            };
-        case "SHOW_ALL":
-            console.log('show_all');
-            return {
-                ...state, todos: [...state.todos]
+                ...state, todos: [...state.todos], currentFilter: action.filter
             };
         case "DELL_ALL_DONE":
             return {

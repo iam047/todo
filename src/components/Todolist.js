@@ -21,16 +21,23 @@ class Todolist extends Component {
     handlechangeDone = (id) => {
         this.props.changeDone(id);
     };
-
+    getTodosByFilter = (todos, currentFilter) => {
+        if (currentFilter === 'all') {
+            return todos;
+        }
+        return todos.filter(todo =>  todo.done === currentFilter);
+    };
     render() {
+        let { todos, currentFilter  } = this.props;
+        const item = this.getTodosByFilter(todos, currentFilter);
          return (
              <div>
-                 {this.props.todos.map(todo => (
+                 {item.map(todo => (
                      <Todo key={todo.id}
                            todo = {todo}
                            dellTodo = {() => this.handleDelete(todo.id) }
                            Eding = { () => this.handleChangeIsEding(todo.id) }
-                           submit = { () => this.handlesubmit(this,todo.id) }
+                           submit = { (text) => this.handlesubmit(text,todo.id) }
                            ChangeDoneTodo = { () => this.handlechangeDone(todo.id) }
 
                      />
@@ -43,7 +50,8 @@ class Todolist extends Component {
 
 
 const mapStateToProps = ({todoReducer}) => ({
-    todos: todoReducer.todos
+    todos: todoReducer.todos,
+    currentFilter: todoReducer.currentFilter
 });
 const mapDispatchToProps = dispatch => ({
     dellTodo: id => dispatch(dellTodo(id)),

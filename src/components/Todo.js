@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ( {todo:{text, id, isEditing,done }, dellTodo, Eding, submit, ChangeDoneTodo } ) => {
+export default ( {todo:{text, id, isEditing, done}, dellTodo, Eding, submit, ChangeDoneTodo } ) => {
 
     if(isEditing) {
 

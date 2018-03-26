@@ -15,7 +15,6 @@ class Header extends Component {
                 if (!input.value.trim()) {
                     return
                 }
-                console.log(input.value);
                 this.props.addTodo(input.value);
                 input.value = ''
             }}>
