@@ -41,10 +41,10 @@ export  const fetchSuccess = data => {
 export const fetchData = url => {
     return (dispatch) => {
         dispatch(fetchRequest(true));
-        setTimeout(() => fetch(url)
+         fetch(url)
             .then((response) => response.json())
             .then((items) => dispatch(fetchSuccess(items)))
             .then(() => dispatch(fetchRequest(false)))
-            .catch(() => dispatch(fetchError(true))), 2000);
+            .catch(() => dispatch(fetchError(true)))
     };
-}
+};
