@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default ( {todo:{text, id, isEditing, done}, dellTodo, editing, submit, ChangeDoneTodo } ) => {
-
     if(isEditing) {
 
         return(

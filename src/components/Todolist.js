@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {dellTodo, changeIsEditing, submit, changeDone} from "../actions";
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { dellTodo, changeIsEditing, submit, changeDone } from "../actions";
 import Todo from './Todo';
-import {bindActionCreators} from "redux";
+import { bindActionCreators } from "redux";
 
 class Todolist extends Component {
 
@@ -10,15 +10,15 @@ class Todolist extends Component {
         this.props.submit(text, id)
     };
 
-    dellTodo = (id) => {
+    dellTodo = id => {
         this.props.dellTodo(id);
     };
 
-    changeIsEditing = (id) => {
+    changeIsEditing = id => {
         this.props.changeIsEditing(id);
     };
 
-    changeDone = (id) => {
+    changeDone = id => {
         this.props.changeDone(id);
     };
     getTodosByFilter = (todos, currentFilter) => {
@@ -28,12 +28,17 @@ class Todolist extends Component {
         return todos.filter(todo =>  todo.done === currentFilter);
     };
     render() {
-        let { todos, currentFilter,searchTodo,searchValue } = this.props;
+        let { todos, currentFilter,searchTodo,searchValue, Loading } = this.props;
         const item = this.getTodosByFilter(todos, currentFilter);
         const fillterSearch = item.filter( todo => {
             return searchTodo ==='input' || todo.text.toLowerCase().includes(searchValue);
         });
-         return (
+        if (Loading) {
+            return (
+                <p>Loading...</p>
+            );
+        }
+        return (
              <div>
                  {fillterSearch.map(todo => (
                      <Todo key={todo.id}
@@ -75,7 +80,8 @@ export default connect(
         todos: todoReducer.todos,
         currentFilter: todoReducer.currentFilter,
         searchTodo:  todoReducer.searchTodo,
-        searchValue: todoReducer.searchValue
+        searchValue: todoReducer.searchValue,
+        Loading: todoReducer.Loading
     }),
     dispatch => bindActionCreators({
         dellTodo,

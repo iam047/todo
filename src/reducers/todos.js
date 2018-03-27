@@ -1,4 +1,15 @@
 import initialState from '../initialState';
+
+function parseTodos (data) {
+  return data.map( item => {
+      return {
+          ...item,
+          done: false,
+          isEditing: false
+      }
+  });
+}
+
 const todoReducer = (state=initialState.todoReducer, action) => {
     switch (action.type) {
     case 'ADD_TODO':
@@ -10,8 +21,7 @@ const todoReducer = (state=initialState.todoReducer, action) => {
                     id: Date.now().toString(),
                     text: action.text,
                     done: false,
-                    isEditing: false,
-                    change_text: ''
+                    isEditing: false
                 },
             ],
             currentFilter:  'all',
@@ -56,6 +66,18 @@ const todoReducer = (state=initialState.todoReducer, action) => {
         case "VALUE_SEARCH":
             return {
                 ...state, todos: [...state.todos], searchValue: action.value
+            };
+        case "ERROR":
+            return console.log(action.boolean);
+
+        case "REQUEST":
+            return {
+                ...state, todos: [...state.todos], Loading: action.Loading
+            };
+
+        case 'FETCH_DATA_SUCCESS':
+            return {
+                ...state, todos: [...state.todos, ...parseTodos(action.data)]
             };
         default:
         return state;

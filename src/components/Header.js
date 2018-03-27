@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {bindActionCreators} from "redux";
-import { addTodo, changeSearch, valueSearch} from "../actions";
+import { bindActionCreators } from "redux";
+import { addTodo, changeSearch, valueSearch } from "../actions";
 
 class Header extends Component {
 
-    changeSearch (item) {
+    changeSearch = item => {
         this.props.changeSearch(item);
-    }
+    };
 
-    addSearchValue  (e) {
+    addSearchValue = e => {
         const { searchTodo} = this.props;
         if(searchTodo === 'search')
         this.props.valueSearch(e.target.value);
@@ -67,7 +67,6 @@ class Header extends Component {
 //     mapStateToProps,
 //     mapDispatchToProps
 // )(Header)
-
 
 export default connect(
     ({todoReducer}) => ({

@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {filters, dellAllDoneTodo} from "../actions";
-import {bindActionCreators} from "redux";
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { filters, dellAllDoneTodo } from "../actions";
+import { bindActionCreators } from "redux";
 
 class  Footer extends Component {
-     constructor(){
+     constructor() {
          super();
          this.obj = [
              {
@@ -22,7 +22,7 @@ class  Footer extends Component {
 
          ];
      }
-    filters = (nextFilter) =>{
+    filters = (nextFilter) => {
          this.props.filters(nextFilter);
     };
 

@@ -5,8 +5,6 @@ const initialState = {
         searchTodo: 'input',
         searchValue: ''
     }
-
-
 };
 
 export default initialState;
